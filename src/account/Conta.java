@@ -21,4 +21,15 @@ public abstract class Conta {
         this.agencia = agencia;
     }
 
+    @Override
+    public String toString() {
+        return "Conta{" +
+                "nome='" + nome + '\'' +
+                ", CPF='" + CPF + '\'' +
+                ", rendaMensal=" + rendaMensal +
+                ", numeroConta=" + numeroConta +
+                ", agencia=" + agencia +
+                ", saldo=" + saldo +
+                '}';
+    }
 }
