@@ -2,6 +2,8 @@ package application;
 
 import account.Conta;
 import account.ContaCorrente;
+import account.ContaInvestimento;
+import account.ContaPoupanca;
 import enums.Agencia;
 
 import java.util.HashSet;
@@ -59,9 +61,11 @@ public class Plataforma {
                     break;
                 case "2":
                     System.out.println("Relatório de contas poupanças");
+                    listarContasPoupança();
                     break;
                 case "3":
                     System.out.println("Relatório de contas de investimento");
+                    listarContasInvestimento();
                     break;
                 default:
                     System.out.println("Opção inválida");
@@ -74,6 +78,20 @@ public class Plataforma {
     public void listarContasCorrentes(){
         for(Conta conta : contas){
             if(conta instanceof ContaCorrente){
+                System.out.println(conta);
+            }
+        }
+    }
+    public void listarContasPoupança(){
+        for(Conta conta : contas){
+            if(conta instanceof ContaPoupanca){
+                System.out.println(conta);
+            }
+        }
+    }
+    public void listarContasInvestimento(){
+        for(Conta conta : contas){
+            if(conta instanceof ContaInvestimento){
                 System.out.println(conta);
             }
         }

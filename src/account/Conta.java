@@ -11,7 +11,7 @@ public abstract class Conta {
     @Getter @Setter(AccessLevel.PROTECTED) private double rendaMensal;
     @Getter @Setter(AccessLevel.PROTECTED) private int numeroConta;
     @Getter @Setter(AccessLevel.PROTECTED) private Agencia agencia;
-    @Getter private double saldo;
+    @Getter protected double saldo;
 
     public Conta(String nome, String CPF, double rendaMensal, int numeroConta, Agencia agencia) {
         this.nome = nome;
@@ -44,4 +44,6 @@ public abstract class Conta {
                 ", saldo=" + saldo +
                 '}';
     }
+
+
 }
