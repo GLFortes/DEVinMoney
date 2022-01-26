@@ -21,7 +21,19 @@ public abstract class Conta {
         this.agencia = agencia;
     }
 
-    @Override
+    public void depositar(double valor) {
+        this.saldo += valor;
+    }
+
+    public void sacar(double valor) {
+        this.saldo -= valor;
+    }
+
+    public void transferir(double valor, Conta conta) {
+        this.sacar(valor);
+        conta.depositar(valor);
+    }
+
     public String toString() {
         return "Conta{" +
                 "nome='" + nome + '\'' +
