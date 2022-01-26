@@ -12,15 +12,15 @@ import java.util.regex.Pattern;
 import static enums.Agencia.FLORIANOPOLIS;
 
 public class Plataforma {
-
+    Scanner scanner = new Scanner(System.in);
     HashSet<Conta> contas = new HashSet<Conta>();
-    public void menu(){
+
+    public void showMenu(){
         System.out.println("1 - Cadastrar Conta");
         System.out.println("2 - Listar Contas");
         System.out.println("3 - Sair");
     }
     public void validarCPF(String cpf){
-        Scanner scanner = new Scanner(System.in);
         Pattern pattern = Pattern.compile("([0-9]{11})");
         Matcher matcher = pattern.matcher(cpf);
         if(matcher.matches()){
@@ -35,27 +35,27 @@ public class Plataforma {
 
     public void cadastrarContaCorrente(){
         Agencia agencia = FLORIANOPOLIS;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite o nome do titular da conta");
-        String nome = scanner.nextLine();
-        System.out.println("Insira o cpf:");
-        String cpf = scanner.nextLine();
+        System.out.println("Digite o nome do titular da conta: ");
+        String nome = scanner.next();
+        System.out.println("Insira o cpf: ");
+        String cpf = scanner.next();
         validarCPF(cpf);
         System.out.println("Insira a renda mensal:");
         double renda = scanner.nextDouble();
         contas.add(new ContaCorrente(nome, cpf, renda, 1, agencia));
-
+        System.out.println("Conta cadastrada com sucesso");
     }
+
     public void relatorios(){
         System.out.println("1 - Listar todas as contas correntes");
         System.out.println("2 - Relatório de contas poupanças");
         System.out.println("3 - Relatório de contas de investimento");
-        Scanner scanner = new Scanner(System.in);
-        String opcao = scanner.nextLine();
+        String opcao = scanner.next();
         try{
             switch (opcao){
                 case "1":
                     System.out.println("Relatório de contas correntes");
+                    listarContasCorrentes();
                     break;
                 case "2":
                     System.out.println("Relatório de contas poupanças");
@@ -69,6 +69,13 @@ public class Plataforma {
             }
         }catch(Exception e){
             System.out.println("Opção inválida");
+        }
+    }
+    public void listarContasCorrentes(){
+        for(Conta conta : contas){
+            if(conta instanceof ContaCorrente){
+                System.out.println(conta);
+            }
         }
     }
 
