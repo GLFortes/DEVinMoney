@@ -23,7 +23,7 @@ public class ContaCorrente extends Conta {
                     System.out.println("Saldo insuficiente.");
                 }else{
                     double saldoSaqueCheque = this.saldo + this.cheque;
-                    this.cheque = this.cheque - (valor - getSaldo());
+                    this.cheque -= valor - getSaldo();
                     this.saldo = saldoSaqueCheque - valor;
                 }
             }else{
