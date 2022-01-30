@@ -19,9 +19,10 @@ public class Plataforma {
     HashSet<Conta> contas = new HashSet<Conta>();
 
     public void showMenu(){
-        System.out.println("1 - Cadastrar Conta");
-        System.out.println("2 - Listar Contas");
-        System.out.println("3 - Sair");
+        System.out.println("1 - Correntista");
+        System.out.println("2 - Poupança");
+        System.out.println("3 - Investimento");
+        System.out.println("4 - Sair");
     }
     public void validarCPF(String cpf){
         Pattern pattern = Pattern.compile("([0-9]{11})");
@@ -66,7 +67,8 @@ public class Plataforma {
         validarCPF(cpf);
         System.out.println("Insira a renda mensal:");
         double renda = scanner.nextDouble();
-        contas.add(new ContaCorrente(nome, cpf, renda, 1, agenciaSelecionada));
+        int numeroConta = contas.size() + 1;
+        contas.add(new ContaCorrente(nome, cpf, renda, numeroConta, agenciaSelecionada));
         System.out.println("Conta cadastrada com sucesso");
     }
 
@@ -137,6 +139,15 @@ public class Plataforma {
             }
         }
         System.out.println("Total de investimentos: " + total);
+    }
+
+    //search an account
+    public Conta buscarContaCorrente(String cpf){
+        for(Conta conta : contas){
+            if(conta.getCpf().equals(cpf)){
+                return conta;
+            }
+        }return null;
     }
 
 
