@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static enums.Agencia.FLORIANOPOLIS;
+import static enums.Agencia.SAO_JOSE;
 
 public class Plataforma {
     Scanner scanner = new Scanner(System.in);
@@ -36,7 +37,28 @@ public class Plataforma {
     }
 
     public void cadastrarContaCorrente(){
-        Agencia agencia = FLORIANOPOLIS;
+        //selecionar agencia
+        System.out.println("Selecione a agência: ");
+        System.out.println("1 - Florianópolis");
+        System.out.println("2 - São José");
+        String agencia = scanner.next();
+        Agencia agenciaSelecionada = null;
+        try{
+            switch (agencia){
+                case "1":
+                    agenciaSelecionada = FLORIANOPOLIS;
+                    break;
+                case "2":
+                    agenciaSelecionada = SAO_JOSE;
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+                    break;
+            }
+        }
+        catch(Exception e){
+            System.out.println("Opção inválida");
+        }
         System.out.println("Digite o nome do titular da conta: ");
         String nome = scanner.next();
         System.out.println("Insira o cpf: ");
@@ -44,7 +66,7 @@ public class Plataforma {
         validarCPF(cpf);
         System.out.println("Insira a renda mensal:");
         double renda = scanner.nextDouble();
-        contas.add(new ContaCorrente(nome, cpf, renda, 1, agencia));
+        contas.add(new ContaCorrente(nome, cpf, renda, 1, agenciaSelecionada));
         System.out.println("Conta cadastrada com sucesso");
     }
 
@@ -96,5 +118,26 @@ public class Plataforma {
             }
         }
     }
+
+    //get accounts with negative balance
+    public void getAccountsWithNegativeBalance(){
+        for(Conta conta : contas){
+            if(conta.getSaldo() < 0){
+                System.out.println(conta);
+            }
+        }
+    }
+
+    //get total value of investment
+    public void getTotalValueOfInvestment(){
+        double total = 0;
+        for(Conta conta : contas){
+            if(conta instanceof ContaInvestimento){
+                total += conta.getSaldo();
+            }
+        }
+        System.out.println("Total de investimentos: " + total);
+    }
+
 
 }

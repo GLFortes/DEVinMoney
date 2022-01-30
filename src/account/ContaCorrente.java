@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.util.Scanner;
 
 public class ContaCorrente extends Conta {
-    @Getter private double cheque = saldo * 0.5;
+    @Getter private double cheque = getSaldo() * 0.5;
     public ContaCorrente(String nome, String CPF, double rendaMensal, int numeroConta, Agencia agencia) {
         super(nome, CPF, rendaMensal, numeroConta, agencia);
     }
@@ -22,7 +22,7 @@ public class ContaCorrente extends Conta {
                 if (valor > getSaldo() + getCheque()){
                     System.out.println("Saldo insuficiente.");
                 }else{
-                    double saldoSaqueCheque = this.saldo + this.cheque;
+                    double saldoSaqueCheque = getSaldo() + this.cheque;
                     this.cheque -= valor - getSaldo();
                     this.saldo = saldoSaqueCheque - valor;
                 }
