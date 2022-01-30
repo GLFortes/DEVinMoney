@@ -7,6 +7,7 @@ import account.ContaPoupanca;
 import enums.Agencia;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,6 +25,11 @@ public class Plataforma {
         System.out.println("3 - Investimento");
         System.out.println("4 - Sair");
     }
+
+    public HashSet<Conta> getContas() {
+        return contas;
+    }
+
     public void validarCPF(String cpf){
         Pattern pattern = Pattern.compile("([0-9]{11})");
         Matcher matcher = pattern.matcher(cpf);
@@ -150,5 +156,25 @@ public class Plataforma {
         }return null;
     }
 
+    //Buscar conta pelo numero;
+    public Conta buscarContaPorNumero(int numero){
+        for(Conta conta : contas){
+            if(conta.getNumeroConta() == numero){
+                return conta;
+            }
+        }return null;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Plataforma that = (Plataforma) o;
+        return Objects.equals(scanner, that.scanner) && Objects.equals(contas, that.contas);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(scanner, contas);
+    }
 }
