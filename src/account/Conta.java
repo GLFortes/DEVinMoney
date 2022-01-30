@@ -29,18 +29,24 @@ public abstract class Conta {
     public void depositar(double valor) {
         if (valor > 0) {
         this.saldo += valor;
-        transactions.add("Deposito de R$" + valor + " realizado.");}
+            setDia(LocalDateTime.now());
+        transactions.add("Deposito de R$" + valor + " realizado no dia " + getDia());}
         else {
             System.out.println("Operação inválida");
         }
     }
 
     public void sacar(double valor) {
-        if (valor > 0) {
-        saldo -= valor;
-        transactions.add("Saque de R$" + valor + " realizado.");}
-        else {
-            System.out.println("Operação inválida");
+        if(getSaldo() >= valor){
+            if (valor > 0) {
+            saldo -= valor;
+                setDia(LocalDateTime.now());
+            transactions.add("Saque de R$" + valor + " realizado no dia " + getDia());}
+            else {
+                System.out.println("Operação inválida");
+        }}
+        else{
+            System.out.println("Saldo insuficiente");
         }
     }
 
@@ -76,4 +82,5 @@ public abstract class Conta {
          System.out.println(transactions.get(i));}
      }
  }
+
 }

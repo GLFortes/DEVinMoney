@@ -6,6 +6,7 @@ import account.ContaInvestimento;
 import account.ContaPoupanca;
 import enums.Agencia;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ import static enums.Agencia.FLORIANOPOLIS;
 import static enums.Agencia.SAO_JOSE;
 
 public class Plataforma {
+    LocalDateTime data;
     Scanner scanner = new Scanner(System.in);
     HashSet<Conta> contas = new HashSet<>();
     public void adicionaConta(Conta conta){
@@ -117,7 +119,7 @@ public class Plataforma {
         System.out.println("Insira a renda mensal:");
         double renda = scanner.nextDouble();
         int numeroConta = contas.size() + 1;
-        contas.add(new ContaCorrente(nome, cpf, renda, numeroConta, agenciaSelecionada));
+        contas.add(new ContaPoupanca(nome, cpf, renda, numeroConta, agenciaSelecionada));
         System.out.println("Conta cadastrada com sucesso");
     }
     public void cadastrarContaInvestimento(){
@@ -154,7 +156,7 @@ public class Plataforma {
         System.out.println("Insira a renda mensal:");
         double renda = scanner.nextDouble();
         int numeroConta = contas.size() + 1;
-        contas.add(new ContaCorrente(nome, cpf, renda, numeroConta, agenciaSelecionada));
+        contas.add(new ContaInvestimento(nome, cpf, renda, numeroConta, agenciaSelecionada));
         System.out.println("Conta cadastrada com sucesso");
     }
 
@@ -228,7 +230,7 @@ public class Plataforma {
     }
 
     //search an account
-    public Conta buscarContaCorrente(String cpf){
+    public Conta buscarContaCPF(String cpf){
         for(Conta conta : contas){
             if(conta.getCpf().equals(cpf)){
                 return conta;
@@ -256,5 +258,17 @@ public class Plataforma {
     @Override
     public int hashCode() {
         return Objects.hash(scanner, contas);
+    }
+
+    public void showMenuCorrente(){
+        System.out.println("Qual operação deseja realizar?\n 1 - Depositar\n 2 - Sacar\n 3 - Transferir\n 4 - Extrato de transações\n 5 - Sair");
+    }
+
+    public void showMenuInvest(){
+        System.out.println("Escolha uma das opções:\n 1 - Sacar\n 2 - Depositar\n 3 - Transferir\n 4 - Extrato\n 5 - Investir\n 6 - Sair");
+
+    }
+    public void showMenuPoup(){
+        System.out.println("Escolha uma das opções:\n 1 - Sacar\n 2 - Depositar\n 3 - Transferir\n 4 - Extrato\n 5 - Sair");
     }
 }
