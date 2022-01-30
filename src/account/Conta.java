@@ -10,16 +10,16 @@ import java.util.ArrayList;
 public abstract class Conta {
 
     @Getter @Setter(AccessLevel.PROTECTED) private String nome;
-    @Getter @Setter(AccessLevel.PROTECTED) private String CPF;
+    @Getter @Setter(AccessLevel.PROTECTED) private String cpf;
     @Getter @Setter(AccessLevel.PROTECTED) private double rendaMensal;
     @Getter @Setter(AccessLevel.PROTECTED) private int numeroConta;
     @Getter @Setter(AccessLevel.PROTECTED) private Agencia agencia;
     @Getter @Setter(AccessLevel.PROTECTED) protected double saldo;
     @Getter @Setter(AccessLevel.PROTECTED) protected ArrayList<String> transactions = new ArrayList<String>();
 
-    public Conta(String nome, String CPF, double rendaMensal, int numeroConta, Agencia agencia) {
+    public Conta(String nome, String cpf, double rendaMensal, int numeroConta, Agencia agencia) {
         this.nome = nome;
-        this.CPF = CPF;
+        this.cpf = cpf;
         this.rendaMensal = rendaMensal;
         this.numeroConta = numeroConta;
         this.agencia = agencia;
@@ -55,7 +55,7 @@ public abstract class Conta {
     public String toString() {
         return "Conta{" +
                 "nome='" + nome + '\'' +
-                ", CPF='" + CPF + '\'' +
+                ", CPF='" + cpf + '\'' +
                 ", rendaMensal=" + rendaMensal +
                 ", numeroConta=" + numeroConta +
                 ", agencia=" + agencia +
