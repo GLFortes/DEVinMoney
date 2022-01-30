@@ -164,7 +164,7 @@ public class Program {
                             System.out.println("");
                             break;
                         case "3":
-                            System.out.println("Buscar investimento. Digite o número da conta:");
+                            System.out.println("Informe o número da conta à ser buscada:");
                             int numeroContaInv = scanner.nextInt();
                             Conta contaInv = plataforma.buscarContaPorNumero(numeroContaInv);
                             if (contaInv == null){
@@ -185,8 +185,8 @@ public class Program {
                                         break;
                                     case "3":
                                         System.out.println("Digite o número da conta a ser transferido:");
-                                        int numeroConta = scanner.nextInt();
-                                        Conta contaTransf = plataforma.buscarContaPorNumero(numeroConta);
+                                        int numeroConta3 = scanner.nextInt();
+                                        Conta contaTransf = plataforma.buscarContaPorNumero(numeroConta3);
                                         if (contaTransf == null){
                                             System.out.println("Conta não encontrada");
                                         }else{
