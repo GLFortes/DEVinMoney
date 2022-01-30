@@ -35,8 +35,8 @@ public abstract class Conta {
     }
 
     public void sacar(double valor) {
-        if (valor >= 0) {
-        this.saldo -= valor;
+        if (valor > 0) {
+        saldo -= valor;
         transactions.add("Saque de R$" + valor + " na conta de " + this.nome);}
         else {
             System.out.println("Operação inválida");
@@ -44,8 +44,8 @@ public abstract class Conta {
     }
 
     public void transferir(double valor, Conta conta) {
-        if (valor >= 0) {
-        this.sacar(valor);
+        if (valor > 0) {
+        sacar(valor);
         conta.depositar(valor);}
         else {
             System.out.println("Operação inválida");
@@ -64,7 +64,7 @@ public abstract class Conta {
     }
 
  //get all transactions
- public void getTransactions(){
+ public void extrato(){
      System.out.println("Transações da conta corrente: ");
      for (int i = 0; i < transactions.size(); i++) {
          System.out.println(transactions.get(i));
