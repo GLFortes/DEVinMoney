@@ -2,13 +2,15 @@ package account;
 
 import enums.Agencia;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Scanner;
 
 public class ContaCorrente extends Conta {
-    @Getter private double cheque = getSaldo() * 0.5;
+    @Getter @Setter private double cheque;
     public ContaCorrente(String nome, String CPF, double rendaMensal, int numeroConta, Agencia agencia) {
         super(nome, CPF, rendaMensal, numeroConta, agencia);
+        this.cheque = getRendaMensal() * 0.5;
     }
 
     @Override
@@ -16,22 +18,30 @@ public class ContaCorrente extends Conta {
         Scanner scanner = new Scanner(System.in);
         if (valor > getSaldo()){
             System.out.println("Saldo insuficiente");
-            System.out.println("Você gostaria de utilizar o cheque especial? (S/N)");
+            System.out.println("Deseja sacar o cheque? (S/N)");
             String resposta = scanner.nextLine();
             if (resposta.equalsIgnoreCase("S")){
-                if (valor > getSaldo() + getCheque()){
-                    System.out.println("Saldo insuficiente.");
+                if (valor >  getCheque()){
+                    System.out.println("Saldo insuficiente");
                 }else{
-                    double saldoSaqueCheque = getSaldo() + this.cheque;
-                    this.cheque -= valor - getSaldo();
-                    this.saldo = saldoSaqueCheque - valor;
+                    setSaldo(getSaldo() - valor);
+                    setCheque(getCheque() - valor);
                 }
             }else{
-                System.out.println("Encerrando operação...");
+                System.out.println("Operação cancelada");
             }
-        }else{
-            this.saldo -= valor;
-            transactions.add("Deposito de R$" + valor + " na conta de " + getNome());
         }
+}
+    @Override
+    public String toString(){
+        return "Conta{" +
+                "nome='" + getNome() + '\'' +
+                ", CPF='" + getCpf() + '\'' +
+                ", rendaMensal=" + getRendaMensal() +
+                ", numeroConta=" + getNumeroConta() +
+                ", agencia=" + getAgencia() +
+                ", saldo=" + saldo +
+                ", cheque=" + cheque +
+                '}';
     }
 }

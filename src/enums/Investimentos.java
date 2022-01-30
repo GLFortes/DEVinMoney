@@ -12,4 +12,11 @@ public enum Investimentos {
     public int getCodigo() {
         return codigo;
     }
+
+    @Override
+    public String toString() {
+        return "Investimentos{" +
+                "codigo=" + codigo +
+                '}';
+    }
 }

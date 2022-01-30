@@ -11,6 +11,11 @@ public class ContaInvestimento extends Conta {
     }
     //solicitar qual investimento
     public void investir(double valor, Investimentos investimento){
+        //não realizar operações no fim de semana
+
+        if(valor > getSaldo()){
+            System.out.println("Saldo insuficiente");
+        }else{
         if (investimento == Investimentos.CDB){
             this.setSaldo(this.getSaldo() + valor * 0.15);
             transactions.add("Investimento CDB: R$" + valor * 0.15);
@@ -22,10 +27,8 @@ public class ContaInvestimento extends Conta {
             transactions.add("Investimento LCA: R$" + valor * 0.05);
         }else{
             System.out.println("Investimento não encontrado");
-    }
-
+    }}
 
 }
-
 
 }

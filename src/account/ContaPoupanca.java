@@ -9,7 +9,7 @@ public class ContaPoupanca extends Conta{
         super(nome, CPF, rendaMensal, numeroConta, agencia);
     }
 
-    public void simularRentabilidade(int meses){
+    public void simularRent(int meses){
         double saldo = this.getSaldo();
         for(int i = 0; i < meses; i++){
             saldo += saldo * rentabilidade;
