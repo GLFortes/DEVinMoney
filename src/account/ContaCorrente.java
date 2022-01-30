@@ -29,6 +29,9 @@ public class ContaCorrente extends Conta {
             }else{
                 System.out.println("Encerrando operação...");
             }
+        }else{
+            this.saldo -= valor;
+            transactions.add("Deposito de R$" + valor + " na conta de " + getNome());
         }
     }
 }

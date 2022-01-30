@@ -17,7 +17,10 @@ import static enums.Agencia.SAO_JOSE;
 
 public class Plataforma {
     Scanner scanner = new Scanner(System.in);
-    HashSet<Conta> contas = new HashSet<Conta>();
+    HashSet<Conta> contas = new HashSet<>();
+    public void adicionaConta(Conta conta){
+        contas.add(conta);
+    }
 
     public void showMenu(){
         System.out.println("1 - Correntista");
@@ -48,7 +51,8 @@ public class Plataforma {
         System.out.println("Selecione a agência: ");
         System.out.println("1 - Florianópolis");
         System.out.println("2 - São José");
-        String agencia = scanner.next();
+        String agencia = scanner.nextLine();
+        System.out.println("");
         Agencia agenciaSelecionada = null;
         try{
             switch (agencia){
@@ -67,9 +71,85 @@ public class Plataforma {
             System.out.println("Opção inválida");
         }
         System.out.println("Digite o nome do titular da conta: ");
-        String nome = scanner.next();
+        String nome = scanner.nextLine();
+        System.out.println("");
         System.out.println("Insira o cpf: ");
-        String cpf = scanner.next();
+        String cpf = scanner.nextLine();
+        System.out.println("");
+        validarCPF(cpf);
+        System.out.println("Insira a renda mensal:");
+        double renda = scanner.nextDouble();
+        int numeroConta = contas.size() + 1;
+        contas.add(new ContaCorrente(nome, cpf, renda, numeroConta, agenciaSelecionada));
+        System.out.println("Conta cadastrada com sucesso");
+    }
+    public void cadastrarContaPoupanca(){
+        //selecionar agencia
+        System.out.println("Selecione a agência: ");
+        System.out.println("1 - Florianópolis");
+        System.out.println("2 - São José");
+        String agencia = scanner.nextLine();
+        System.out.println("");
+        Agencia agenciaSelecionada = null;
+        try{
+            switch (agencia){
+                case "1":
+                    agenciaSelecionada = FLORIANOPOLIS;
+                    break;
+                case "2":
+                    agenciaSelecionada = SAO_JOSE;
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+                    break;
+            }
+        }
+        catch(Exception e){
+            System.out.println("Opção inválida");
+        }
+        System.out.println("Digite o nome do titular da conta: ");
+        String nome = scanner.nextLine();
+        System.out.println("");
+        System.out.println("Insira o cpf: ");
+        String cpf = scanner.nextLine();
+        System.out.println("");
+        validarCPF(cpf);
+        System.out.println("Insira a renda mensal:");
+        double renda = scanner.nextDouble();
+        int numeroConta = contas.size() + 1;
+        contas.add(new ContaCorrente(nome, cpf, renda, numeroConta, agenciaSelecionada));
+        System.out.println("Conta cadastrada com sucesso");
+    }
+    public void cadastrarContaInvestimento(){
+        //selecionar agencia
+        System.out.println("Selecione a agência: ");
+        System.out.println("1 - Florianópolis");
+        System.out.println("2 - São José");
+        String agencia = scanner.nextLine();
+        System.out.println("");
+        Agencia agenciaSelecionada = null;
+        try{
+            switch (agencia){
+                case "1":
+                    agenciaSelecionada = FLORIANOPOLIS;
+                    break;
+                case "2":
+                    agenciaSelecionada = SAO_JOSE;
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+                    break;
+            }
+        }
+        catch(Exception e){
+            System.out.println("Opção inválida");
+        }
+        System.out.println("Digite o nome do titular da conta: ");
+        String nome = scanner.nextLine();
+        System.out.println("");
+        System.out.println("Insira o cpf: ");
+        String cpf = scanner.nextLine();
+        System.out.println("");
         validarCPF(cpf);
         System.out.println("Insira a renda mensal:");
         double renda = scanner.nextDouble();
@@ -91,7 +171,7 @@ public class Plataforma {
                     break;
                 case "2":
                     System.out.println("Relatório de contas poupanças");
-                    listarContasPoupança();
+                    listarContasPoupanca();
                     break;
                 case "3":
                     System.out.println("Relatório de contas de investimento");
@@ -112,7 +192,7 @@ public class Plataforma {
             }
         }
     }
-    public void listarContasPoupança(){
+    public void listarContasPoupanca(){
         for(Conta conta : contas){
             if(conta instanceof ContaPoupanca){
                 System.out.println(conta);
