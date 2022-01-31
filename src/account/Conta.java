@@ -35,6 +35,7 @@ public abstract class Conta {
     protected double saldo;
     @Getter
     @Setter(AccessLevel.PROTECTED)
+    //Cada conta criada terá um ArrayList que guarda todas movimentações
     protected ArrayList<String> transactions = new ArrayList<String>();
 
     public Conta(String nome, String cpf, double rendaMensal, int numeroConta, Agencia agencia) {
@@ -45,6 +46,7 @@ public abstract class Conta {
         this.agencia = agencia;
     }
 
+    //Deposito
     public void depositar(double valor) {
         if (valor > 0) {
             this.saldo += valor;
@@ -57,6 +59,7 @@ public abstract class Conta {
         }
     }
 
+    //Saque
     public void sacar(double valor) {
         if (getSaldo() >= valor) {
             if (valor > 0) {
@@ -72,6 +75,7 @@ public abstract class Conta {
         }
     }
 
+    //Transferencia
     public void transferir(double valor, Conta conta) {
         if (dSemana.equals("SUNDAY") || dSemana.equals("SATURDAY")) {
             System.out.println(("Operação inválida. Não é possível realizar depósitos nos finais de semana"));
@@ -88,6 +92,7 @@ public abstract class Conta {
             }
         }
     }
+
 
     public String toString() {
         return "Conta{" +

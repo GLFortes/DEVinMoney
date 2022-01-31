@@ -14,8 +14,6 @@ public class ContaInvestimento extends Conta {
 
     //solicitar qual investimento
     public void investir(double valor, Investimentos investimento) {
-        //não realizar operações no fim de semana
-
         if (valor > getSaldo()) {
             System.out.println("Saldo insuficiente");
         } else {

@@ -24,7 +24,7 @@ public class Plataforma {
         contas.add(conta);
     }
 
-
+    //Menu principal
     public void showMenu() {
         System.out.println("1 - Correntista");
         System.out.println("2 - Poupança");
@@ -37,6 +37,7 @@ public class Plataforma {
         return contas;
     }
 
+    //Mecanismo de validação de CPF
     public void validarCPF(String cpf) {
         Pattern pattern = Pattern.compile("([0-9]{11})");
         Matcher matcher = pattern.matcher(cpf);
@@ -50,6 +51,7 @@ public class Plataforma {
         }
     }
 
+    //Cadastro de conta corrente
     public void cadastrarContaCorrente() {
         //selecionar agencia
         boolean agenciaLoop = true;
@@ -58,8 +60,8 @@ public class Plataforma {
         System.out.println("2 - São José");
         String agencia = scanner.nextLine();
         Agencia agenciaSelecionada = null;
-        while(agenciaLoop){
-        switch (agencia) {
+        while (agenciaLoop) {
+            switch (agencia) {
                 case "1":
                     agenciaSelecionada = FLORIANOPOLIS;
                     agenciaLoop = false;
@@ -75,7 +77,8 @@ public class Plataforma {
                     System.out.println("2 - São José");
                     agencia = scanner.nextLine();
                     break;
-            }}
+            }
+        }
         System.out.println("Digite o nome do titular da conta: ");
         String nome = scanner.nextLine();
         System.out.println("Insira o cpf: ");
@@ -89,6 +92,7 @@ public class Plataforma {
         System.out.println("Conta cadastrada com sucesso");
     }
 
+    //Cadastro de conta poupança
     public void cadastrarContaPoupanca() {
         //selecionar agencia
         boolean agenciaLoop = true;
@@ -97,7 +101,7 @@ public class Plataforma {
         System.out.println("2 - São José");
         String agencia = scanner.nextLine();
         Agencia agenciaSelecionada = null;
-        while(agenciaLoop){
+        while (agenciaLoop) {
             switch (agencia) {
                 case "1":
                     agenciaSelecionada = FLORIANOPOLIS;
@@ -114,7 +118,8 @@ public class Plataforma {
                     System.out.println("2 - São José");
                     agencia = scanner.nextLine();
                     break;
-            }}
+            }
+        }
         System.out.println("Digite o nome do titular da conta: ");
         String nome = scanner.nextLine();
         System.out.println("Insira o cpf: ");
@@ -128,6 +133,7 @@ public class Plataforma {
         System.out.println("Conta cadastrada com sucesso");
     }
 
+    //Cadastro de conta investimento
     public void cadastrarContaInvestimento() {
         //selecionar agencia
         boolean agenciaLoop = true;
@@ -137,7 +143,7 @@ public class Plataforma {
         String agencia = scanner.nextLine();
         System.out.println("");
         Agencia agenciaSelecionada = null;
-        while(agenciaLoop){
+        while (agenciaLoop) {
             switch (agencia) {
                 case "1":
                     agenciaSelecionada = FLORIANOPOLIS;
@@ -154,7 +160,8 @@ public class Plataforma {
                     System.out.println("2 - São José");
                     agencia = scanner.nextLine();
                     break;
-            }}
+            }
+        }
         System.out.println("Digite o nome do titular da conta: ");
         String nome = scanner.nextLine();
         System.out.println("Insira o cpf: ");
@@ -168,6 +175,7 @@ public class Plataforma {
         System.out.println("Conta cadastrada com sucesso");
     }
 
+    //Listar contas-corrente
     public void listarContasCorrentes() {
         for (Conta conta : contas) {
             if (conta instanceof ContaCorrente) {
@@ -176,6 +184,7 @@ public class Plataforma {
         }
     }
 
+    //Listar contas-poupanca
     public void listarContasPoupanca() {
         for (Conta conta : contas) {
             if (conta instanceof ContaPoupanca) {
@@ -184,6 +193,7 @@ public class Plataforma {
         }
     }
 
+    //Listar contas-investimento
     public void listarContasInvestimento() {
         for (Conta conta : contas) {
             if (conta instanceof ContaInvestimento) {
@@ -192,13 +202,14 @@ public class Plataforma {
         }
     }
 
+    //Listar todas as contas
     public void listarContas() {
         for (Conta conta : contas) {
             System.out.println(conta);
         }
     }
 
-    //get accounts with negative balance
+    //Listar contas com saldo negativo (não consegui achar um nome em português que ficasse legal pro método)
     public void getAccountsWithNegativeBalance() {
         for (Conta conta : contas) {
             if (conta.getSaldo() < 0) {
@@ -207,18 +218,7 @@ public class Plataforma {
         }
     }
 
-    //get total value of investment
-    public void getTotalValueOfInvestment() {
-        double total = 0;
-        for (Conta conta : contas) {
-            if (conta instanceof ContaInvestimento) {
-                total += conta.getSaldo();
-            }
-        }
-        System.out.println("Total de investimentos: " + total);
-    }
-
-    //search an account
+    //Buscar conta por CPF
     public Conta buscarContaCPF(String cpf) {
         for (Conta conta : contas) {
             if (conta.getCpf().equals(cpf)) {
@@ -228,7 +228,7 @@ public class Plataforma {
         return null;
     }
 
-    //Buscar conta pelo numero;
+    //Buscar conta pelo numero
     public Conta buscarContaPorNumero(int numero) {
         for (Conta conta : contas) {
             if (conta.getNumeroConta() == numero) {
@@ -251,6 +251,7 @@ public class Plataforma {
         return Objects.hash(scanner, contas);
     }
 
+    //Menus pré montados para não poluir o código main
     public void showMenuCorrente() {
         System.out.println("Qual operação deseja realizar?\n 1 - Depositar\n 2 - Sacar\n 3 - Transferir\n 4 - Extrato de transações\n 5 - Sair");
 
@@ -266,13 +267,10 @@ public class Plataforma {
     }
 
     public void showMenuRelatorios() {
-        System.out.println("1 - Relatório de Contas Corrente\n 2 - Relatório de Contas Poupança\n 3 - Relatório de Contas Investimento\n 4 - Relatório de todas as Contas\n 5 - Relatório de contas com saldo negativo \n 6 - Relatório total de investimentos\n 7 - Sair");
+        System.out.println("1 - Relatório de Contas Corrente\n2 - Relatório de Contas Poupança\n3 - Relatório de Contas Investimento\n4 - Relatório de todas as Contas\n5 - Relatório de contas com saldo negativo \n6 - Relatório total de investimentos\n7 - Sair");
     }
 
-    public void historicoTransferencias(Conta origem, Conta destino, double valor) {
 
-
-    }
 }
 
 

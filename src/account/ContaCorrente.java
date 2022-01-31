@@ -40,7 +40,7 @@ public class ContaCorrente extends Conta {
                     setSaldo(getSaldo() - valor);
                     setCheque(getCheque() - valor);
                 }
-            transactions.add("Saque de R$" + valor + " realizado no dia " + getDia());
+                transactions.add("Saque de R$" + valor + " realizado no dia " + getDia());
             } else {
                 System.out.println("Operação cancelada");
             }
