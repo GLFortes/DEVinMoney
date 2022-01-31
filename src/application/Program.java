@@ -26,17 +26,19 @@ public class Program {
             ContaInvestimento conta3 = new ContaInvestimento("José da Silva", "12365489712", 3500, 3, FLORIANOPOLIS);
             conta3.depositar(30000);
             plataforma.adicionaConta(conta3);
+            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+            System.out.println("$ Bem-vindo(a) ao DEVinMoney, o seu banco virtual favorito!$");
+            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+            System.out.println("Escolha entre as opções do menu abaixo:");
             plataforma.showMenu();
             String resposta = scanner.next();
-            System.out.println("");
             while (!resposta.equals("5")) {
                 //Switch opções
                 switch (resposta) {
                     case "1":
                         //Menu conta corrente
-                        System.out.println("Setor de correntistas. Seleciona uma das opções abaixo: \n 1 - Cadastrar Correntista\n 2 - Listar correntistas \n3 - Buscar correntista e realizar operações\n4 - Menu anterior");
+                        System.out.println("Setor de correntistas. Seleciona uma das opções abaixo: \n1 - Cadastrar Correntista\n2 - Listar correntistas \n3 - Buscar correntista e realizar operações\n4 - Menu anterior");
                         String resposta2 = scanner.next();
-                        System.out.println("");
                         if (resposta2.equals("4")) {
                             plataforma.showMenu();
                             resposta = scanner.next();
@@ -85,10 +87,11 @@ public class Program {
                                                     contaCorrente.transferir(valor, contaTransf);
                                                 }
                                                 break;
+                                            //EXTRATO
                                             case "4":
-                                                //EXTRATO
                                                 contaCorrente.extrato();
                                                 break;
+                                            //Volta ao menu anterior
                                             case "5":
                                                 break;
                                             default:
@@ -97,9 +100,10 @@ public class Program {
                                         }//fim switch resposta3
                                     }//fim while resposta3
                                     break;
-
+                                //Volta ao menu anterior
                                 case "4":
                                     break;
+                                //Mensagem de erro
                                 default:
                                     System.out.println("Opção inválida");
                                     break;
@@ -126,7 +130,7 @@ public class Program {
                                     break;
                                 //Buscar conta poupança e realizar operações como saque, deposito, transferência e extrato
                                 case "3":
-                                    System.out.println("Buscar poupança. Digite o CPF do poupançudo:");
+                                    System.out.println("Buscar poupança. Digite o CPF do titular da conta-poupança:");
                                     String cpf = scanner.next();
                                     ContaPoupanca contaPoup = (ContaPoupanca) plataforma.buscarContaCPF(cpf);
                                     if (plataforma.buscarContaCPF(cpf) == null) {
