@@ -141,7 +141,6 @@ public class Plataforma {
         System.out.println("1 - Florianópolis");
         System.out.println("2 - São José");
         String agencia = scanner.nextLine();
-        System.out.println("");
         Agencia agenciaSelecionada = null;
         while (agenciaLoop) {
             switch (agencia) {
