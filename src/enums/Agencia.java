@@ -1,7 +1,7 @@
 package enums;
 
 public enum Agencia {
-    FLORIANOPOLIS("Florianópolis", "SC"),  SAO_JOSE("São José", "SC");
+    FLORIANOPOLIS("Florianópolis", "SC"), SAO_JOSE("São José", "SC");
     private String nome;
     private String estado;
 
